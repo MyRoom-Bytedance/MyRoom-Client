@@ -1,19 +1,35 @@
-import React from 'react';
+/** 
+ * @Author       : TagBug 1242135295@qq.com
+ * @Date         : 2022-05-21 17:26:08
+ * @LastEditors  : TagBug 1242135295@qq.com
+ * @LastEditTime : 2022-05-21 19:21:51
+ * @FilePath     : \myroom-client\src\index.tsx
+ * @Description  : 入口
+ */
+
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import './global.css';
+import { BrowserRouter, useRoutes } from 'react-router-dom';
+import { FallbackLoading } from './components/FallbackLoading';
+import { routeConfig } from './route/route';
+import { Provider } from 'react-redux';
+import { persistor, store } from 'redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+const Index = () => {
+    return <Suspense fallback={<FallbackLoading />}>{useRoutes(routeConfig)}</Suspense>;
+};
+
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <React.StrictMode>
+        <BrowserRouter>
+            <Provider store={store}>
+                <PersistGate persistor={persistor}>
+                    <Index />
+                </PersistGate>
+            </Provider>
+        </BrowserRouter>
+    </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
