@@ -8,17 +8,31 @@ export default React.memo(() => {
   return <>
     <div
       style={{
-        height: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
+        position: 'relative',
       }}
     >
-      <Outlet />
-      <Tabs onChange={(key) => navigator(key)}>
-        <Tab title="活动" key="activity" />
-        <Tab title="房源" key="list" />
-      </Tabs>
+      <div
+        style={{
+          width: '100%',
+          paddingBottom: '45px',
+        }}
+      >
+        <Outlet />
+      </div>
+      <div
+        style={{
+          width: '100%',
+          height: 45,
+          position: 'fixed',
+          bottom: 0,
+          backgroundColor: '#fff',
+        }}
+      >
+        <Tabs onChange={(key) => navigator(key)} >
+          <Tab title="活动" key="activity" />
+          <Tab title="房源" key="list" />
+        </Tabs>
+      </div>
     </div>
   </>;
 });
