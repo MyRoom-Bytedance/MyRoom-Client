@@ -15,7 +15,7 @@ import ExecuteError from 'util/executeError';
 axios.defaults.timeout = 20000;
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.defaults.withCredentials = false;
-axios.defaults.baseURL = 'http://180.184.74.244/';
+axios.defaults.baseURL = 'http://127.0.0.1:8000';
 
 const responseInterceptor = (resp: AxiosResponse<any, any>) => {
   // 请求状态不是200，直接抛出异常
