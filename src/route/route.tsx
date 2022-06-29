@@ -10,45 +10,33 @@
 import React from 'react';
 import { Navigate, RouteObject } from 'react-router';
 import { NotFound } from 'components/NotFound';
-import { LoginRedirect } from 'components/LoginRedirect';
 
 // 由于React.lazy只支持默认导出，所以需要增加一层导出转换
-const Login = React.lazy(() => import('./PageLogin'));
-const Activity = React.lazy(() => import('./PageActivity'));
-const Detail = React.lazy(() => import('./PageDetail'));
+const Activity = React.lazy(() => import('../pages/Activity'));
+const Detail = React.lazy(() => import('../pages/Detail'));
+const List = React.lazy(() => import('../pages/List'));
+const Layout = React.lazy(() => import('../pages/Layout'));
 
 export const routeConfig: RouteObject[] = [
   {
     path: '/',
+    element: <Layout />,
     children: [
       {
-        path: 'login',
-        element: <Login />,
+        path: '/list',
+        element: <List />,
       },
       {
-        path: 'client/',
-        children: [
-          {
-            path: 'activity/:id',
-            element: <Activity />,
-          },
-          {
-            path: 'detail/:id',
-            element: <Detail />,
-          },
-          {
-            path: '',
-            element: <Navigate to="./activity/test" />,
-          },
-          {
-            path: '*',
-            element: <NotFound />,
-          },
-        ],
+        path: 'activity',
+        element: <Activity />,
+      },
+      {
+        path: 'detail/:id',
+        element: <Detail />,
       },
       {
         path: '',
-        element: <LoginRedirect />,
+        element: <Navigate to="./activity" />,
       },
       {
         path: '*',

@@ -15,7 +15,7 @@ import type { Home } from '../../service/home';
 import { getHomeById } from '../../service/home';
 const GridItem = Grid.Item;
 
-export const Detail = React.memo(() => {
+export default React.memo(() => {
   const { id } = useParams<{ id: string }>();
   const [home, setHome] = useState<Home>({});
   const getInfo = async (id: number) => {

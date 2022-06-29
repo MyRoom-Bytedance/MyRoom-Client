@@ -10,7 +10,7 @@
 import React from 'react';
 import { useParams } from 'react-router';
 
-export const Activity = React.memo(() => {
+export default React.memo(() => {
   const { id } = useParams<{ id: string }>();
 
   return <>活动页：{id}</>;
