@@ -1,4 +1,4 @@
-/** 
+/**
  * @Author       : TagBug 1242135295@qq.com
  * @Date         : 2022-05-21 17:26:08
  * @LastEditors  : TagBug 1242135295@qq.com
@@ -18,18 +18,18 @@ import { persistor, store } from 'redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
 
 const Index = () => {
-    return <Suspense fallback={<FallbackLoading />}>{useRoutes(routeConfig)}</Suspense>;
+  return <Suspense fallback={<FallbackLoading />}>{useRoutes(routeConfig)}</Suspense>;
 };
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
-    <React.StrictMode>
-        <BrowserRouter>
-            <Provider store={store}>
-                <PersistGate persistor={persistor}>
-                    <Index />
-                </PersistGate>
-            </Provider>
-        </BrowserRouter>
-    </React.StrictMode>
+  <React.StrictMode>
+    <BrowserRouter>
+      <Provider store={store}>
+        <PersistGate persistor={persistor}>
+          <Index />
+        </PersistGate>
+      </Provider>
+    </BrowserRouter>
+  </React.StrictMode>
 );

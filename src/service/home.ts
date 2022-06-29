@@ -1,5 +1,5 @@
-import ExecuteError from "util/executeError";
-import request from "./axios";
+import ExecuteError from 'util/executeError';
+import request from './axios';
 
 export type Home = {
   id?: number;
@@ -117,13 +117,11 @@ export type Home = {
  * @param data 请求数据，类型可以就地定义
  */
 export const getHomeById = (id: number) => {
-  return request<Home>(
-    {
-      url: "/home/",
-      method: "GET",
-      params: {
-        id,
-      },
+  return request<Home>({
+    url: '/home/',
+    method: 'GET',
+    params: {
+      id,
     },
-  );
+  });
 };
