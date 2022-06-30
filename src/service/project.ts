@@ -1,8 +1,8 @@
 import request from './axios';
 
-export const getActiveProject = (id: number) => {
+export const getActiveProject = () => {
   return request<Project>({
-    url: `/project/details/${id}`,
+    url: `/project/active`,
     method: 'GET',
   });
 }

@@ -7,11 +7,31 @@
  * @Description  : 活动页，根据路由传入的id从服务器获取低代码产物，并通过低代码编辑器解析生成
  */
 
-import React from 'react';
-import { useParams } from 'react-router';
+import React, { useEffect } from 'react';
+import { getActiveProject } from '../../service/project';
+import GenernateProject from './GenernateProject';
+
+type Project = {
+  id: number;
+  name: string;
+  global?: any;
+  components: any[];
+  [key: string]: any;
+};
 
 export default React.memo(() => {
-  const { id } = useParams<{ id: string }>();
+  const [project, setProject] = React.useState<Project | null>(null);
+  const getProject = async () => {
+    const res = await getActiveProject();
+    setProject(JSON.parse(res.data.content));
+  }
+  useEffect(() => {
+    getProject();
+  }, []);
 
-  return <>活动页：{id}</>;
+  return (
+    project === null ? <div>loading</div> : (
+      <GenernateProject data={project} />
+    )
+  );
 });
